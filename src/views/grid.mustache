@@ -1,0 +1,17 @@
+<div class="grid__statistic" decorator="updateRecordStatisticPosition">
+	{{ #if records.length !== 0 }}
+		<span class="grid__statistic__number">{{ records.length }} <span data-l10n-id="record_pager_header"></span></span>
+	{{ else }}
+		<span class="grid__statistic__number"><span data-l10n-id="record_pager_no_record_found"></span></span>
+	{{ /if }}
+</div>
+<div class="grid__container">
+	<GridContainer
+		fields="{{columns}}"
+		records="{{records}}"
+		users="{{users}}"
+		dispatcher="{{dispatcher}}"
+		columns="{{columns}}"
+		loadedAllRecords="{{loadedAllRecords}}"
+	/>
+</div>

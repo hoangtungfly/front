@@ -1,0 +1,146 @@
+<div class="wrap-relative">
+	<div class="grid__container-content" id="grid__container-content">
+		<table class="grid__table-container" id="grid-table-container">
+			<tr>
+				<td class="grid__table-container--column-left">
+					<div class="grid__table-lock-column">
+						<table class="grid__table-lock-header">
+							<thead>
+								<tr class="records-table-header">
+									<th class="grid__cell grid__cell--header grid__cell--min"></th>
+								</tr>
+							</thead>
+						</table>
+						<table>
+							<thead>
+								<tr class="records-table-header">
+									<th class="grid__cell grid__cell--header grid__cell--min"></th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</td>
+				<td class="grid__table-container--column-center">
+					<div class="grid__table-container--column-center__wrap" id="grid-column-center">
+						<div class="grid__table-wrap-sticky">
+							<table class="grid__table-sticky" id="grid-table-sticky">
+								<thead class="grid__table-header">
+									<tr class="records-table-header">
+										{{#each fields: num}}
+											<th class="table-column
+														grid__cell grid__cell--header
+														grid-table-column-{{ this.itemNo }}"
+														id="grid-table-column-{{ this.itemNo }}">
+													<LabelHead
+														name="{{ this.name }}"
+														fields="{{ fields }}"
+														itemNo="{{ this.itemNo }}"
+														fieldIndex="{{ num }}"
+														columns="{{ columns }}"
+														records="{{ records }}"
+														dispatcher="{{ dispatcher }}"
+													/>
+												<div>
+													<span class="grid-table-header__resizer"
+													decorator="resizer:
+														'grid-table',
+														'grid-table-column-{{ this.itemNo }}',
+														{{ this.itemNo }},
+														{{ app }},
+														{{fields}},
+														'grid__cell--blank-column'">
+													</span>
+												</div>
+											</th>
+										{{/each}}
+										<th class="grid__cell grid__cell--header grid__cell--blank-column"></th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="grid__table-wrap">
+							<table class="grid__table" id="grid-table">
+								<thead>
+									<tr class="records-table-header">
+										{{#each fields: num}}
+											<th class="table-column
+														grid__cell grid__cell--header
+														grid-table-column-{{ this.itemNo }}"
+														id="grid-table-column-{{ this.itemNo }}">
+													<LabelHead
+														name="{{this.name}}"
+														fields="{{fields}}"
+														itemNo="{{this.itemNo}}"
+														fieldIndex="{{num}}"
+														columns="{{columns}}"
+														records="{{records}}"
+														dispatcher="{{ dispatcher }}"
+													/>
+												<div>
+													<span class="grid-table-header__resizer"
+													decorator="resizer:
+														'grid-table',
+														'grid-table-column-{{ this.itemNo }}',
+														{{ this.itemNo }},
+														'grid-column-center-{{ filterId }}',
+														{{fields}},
+														'grid__cell--blank-column'">
+													</span>
+												</div>
+											</th>
+										{{/each}}
+										<th class="grid__cell grid__cell--header grid__cell--blank-column"></th>
+									</tr>
+								</thead><!-- End header -->
+								<tbody>
+									{{#each records:i}}
+												<tr class="grid__row
+													{{cursorY === i ? 'grid__row--selected' : ''}}">
+													<GridRow
+														plainRecord="{{this}}"
+														dispatcher="{{dispatcher}}"
+														users="{{users}}"
+													/>
+												</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</td>
+				<td class="grid__table-container--column-right">
+					<div class="grid__table-lock" id="grid__table-lock-{{ filterId }}">
+						<table class="grid__table-lock-header">
+							<thead>
+								<tr class="records-table-header">
+									<th class="grid__cell grid__cell--header grid__cell--min"></th>
+								</tr>
+							</thead>
+						</table>
+						<table>
+							<thead>
+								<tr class="records-table-header">
+									<th class="grid__cell grid__cell--header grid__cell--min"></th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#each records}}
+									<tr class="grid__row">
+										<td class="grid__cell grid__cell--min">
+											<a class="grid__cell--action-edit" href="{{ editUrl(this.id) }}">
+												<i class="fa fa-fw fa-pencil-square-o"></i>
+											</a>
+											<a class="grid__cell--action-delete" href="#" on-click="deleteRecordWithId(this.id)">
+												<i class="fa fa-fw fa-trash"></i>
+											</a>
+										</td>
+									</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
