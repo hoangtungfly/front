@@ -1,0 +1,29 @@
+{{#if record}}
+	{{#each record.fields:posX}}
+		<td class="grid__cell grid__cell--operator-selected grid__cell--warning grid__cell--disabled">
+			<GridCell
+				field="{{this}}"
+				dispatcher="{{dispatcher}}"				
+			/>
+
+			<GridCellDisplayName
+				connectData="{{connectData}}"
+				recordId="{{ record.id }}"
+				itemNo="{{ this.id }}" 
+			/>
+		</td>
+	{{/each}}
+	<td class="grid__cell"></td>
+	<!--<td class="grid-cell-left-column grid__cell grid__cell--min">
+		{{#if record.id && record.canEdit && record.canHandleAtLeastOneField}}
+			<a class="grid__cell--action-edit" href="{{ editUrl }}">
+				<i class="fa fa-fw fa-pencil-square-o"></i>
+			</a>
+		{{/if}}
+		{{#if record.id}}
+			<a class="grid__cell--action-delete" href="#" on-click="deleteRecord()">
+				<i class="fa fa-fw fa-trash"></i>
+			</a>
+		{{/if}}
+	</td>-->
+{{/if}}

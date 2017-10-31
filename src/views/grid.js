@@ -1,15 +1,11 @@
 
 var _ = require('underscore');
 var Bluebird = require('../_core/bluebird');
-var backbone = require('backbone');
 var EventEmitter = require('events');
-var asyncObject = require('../services/async-object');
 var view = require('../services/view');
 
-var PlainRecord = require('../models/record/plain-record');
-
 module.exports = view({
-	ractive: asyncObject({
+	ractive: ({
 		template: require('./grid.mustache'),
 		decorators: {
 			updateRecordStatisticPosition: function(node) {
@@ -29,7 +25,7 @@ module.exports = view({
 			dispatcher.setMaxListeners(0);
 
 			return {
-				records: new PlainRecord.Collection(),
+				records: [],
 				recordCount: 0,
 				dispatcher: dispatcher,
 			};
@@ -48,12 +44,9 @@ module.exports = view({
 		});
 
 		records.on('change', function() {
-
-			var plainRecord = createPlainRecord(opt.model.app, columns, opt.model.defaultEditableItems);
-
-			records.push(plainRecord, {
-				silent: true,
-			});
+			// records.push(plainRecord, {
+			// 	silent: true,
+			// });
 
 			view.update('records');
 		});
